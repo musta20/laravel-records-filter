@@ -53,9 +53,9 @@
         <div x-cloak x-show="openMenu" id="dropdownAction"
             class="z-10 mt-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44  ">
             <ul class="py-1 text-sm text-gray-700 " aria-labelledby="dropdownActionButton">
-               @if ($paginator->filterFiled)
+               @if ($paginator->filterOptions)
                    
-                @foreach ($paginator->filterFiled as $item)
+                @foreach ($paginator->filterOptions as $item)
                 <li>
                     <a href="{{$paginator->buildUri(['filed'=>$item['name'],'orderType'=>$item['orderType'],'value'=>$item['value']])}}"
                         class="block px-4 py-2 hover:bg-gray-100  ">
@@ -85,7 +85,7 @@
 
     </div>
 
-    @if ($paginator->realData)
+    @if ($paginator->relationsFilterOptions)
 
     <div class="flex" x-data="{ openMenu: false }">
         <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" @click="openMenu = ! openMenu"
@@ -107,7 +107,7 @@
         <div x-cloak x-show="openMenu" id="dropdownAction"
             class="z-10 mt-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44  ">
             <ul class="py-1 text-sm text-gray-700 " aria-labelledby="dropdownActionButton">
-                @foreach ($paginator->realData as $item)
+                @foreach ($paginator->relationsFilterOptions as $item)
                 <li>
                     <a href="{{$paginator->buildUri(['rel'=>$relType,'id'=>$item->id])}}"
                         class="block px-4 py-2 hover:bg-gray-100  ">
@@ -122,7 +122,7 @@
     @endif
 
 
-    @if ($paginator->realData)
+    @if ($paginator->relationsFilterOptions)
 
 
     <div class="flex gap-1">
@@ -135,7 +135,7 @@
                     d="M14 2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2.172a2 2 0 0 0 .586 1.414l2.828 2.828A2 2 0 0 1 6 9.828v4.363a.5.5 0 0 0 .724.447l2.17-1.085A2 2 0 0 0 10 11.763V9.829a2 2 0 0 1 .586-1.414l2.828-2.828A2 2 0 0 0 14 4.172V2Z" />
             </svg>
 
-            {{ $paginator->realData->find(request('id'))->name ?? $paginator->realData->find(request('id'))->title }}
+            {{ $paginator->relationsFilterOptions->find(request('id'))->name ?? $paginator->relationsFilterOptions->find(request('id'))->title }}
 
             <a href="{{ removeVale(['id','rel']) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
