@@ -1,0 +1,24 @@
+<?php
+
+
+namespace Musta20\LaravelFilter;
+
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
+
+class LaravelFilterServiceProvider extends ServiceProvider
+{
+    private const PATH_VIEWS = __DIR__ . '/../resources/views/';
+
+    public function boot()
+    {
+      
+        $this->loadViewsFrom(__DIR__ .'/resources/views', 'laravelFilter');
+
+    }
+
+    public function register()
+    {
+        // Register any bindings or facades here...
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "musta20/laravel-filter",
+    "description": "a laravel packge to filter record",
+    "version": "1.0.0",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Musta20\\LaravelFilter\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "musta20",
+            "email": "must.g20@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^10.48"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Musta20\\LaravelFilter\\LaravelFilterServiceProvider"
+            ]
+            
+    }
+}
+}
