@@ -85,9 +85,6 @@
 
     </div>
 
-
-
-
     @if ($paginator->realData)
 
     <div class="flex" x-data="{ openMenu: false }">
@@ -173,8 +170,8 @@
 
         </span>
         @endif
-        @if ($paginator->filterFiled)
-        @foreach ($paginator->filterFiled as $item)
+        @if ($paginator->filterOptions)
+        @foreach ($paginator->filterOptions as $item)
         @if(request()->input('value') === (string) $item['value'])
         <span class="flex pt-2 p-2 rounded-md border mx-2  text-gray-500 text-xs">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 mx-1">

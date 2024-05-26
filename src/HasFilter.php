@@ -11,7 +11,7 @@ use Musta20\LaravelFilter\FilterBuilder;
 
 use Illuminate\Database\Eloquent\Builder;
 
-trait Withfilter{
+trait HasFilter{
 
     protected string $defaultSimpleView  = 'components.filter';
 
@@ -25,13 +25,13 @@ trait Withfilter{
                 
         $filterbuilder  = new FilterBuilder($query);
 
-       if(method_exists($this, 'sortFilterOptions')) $filterbuilder->setFilter(sortFilterOptions:$this->sortFilterOptions());
+       if(method_exists($this, 'sortFilterOptions')) $filterbuilder->setFilterOption(sortFilterOptions:$this->sortFilterOptions());
 
-       if(method_exists($this, 'relationsFilterOptions')) $filterbuilder->setFilter(relationsFilterOptions:$this->relationsFilterOptions());
+       if(method_exists($this, 'relationsFilterOptions')) $filterbuilder->setFilterOption(relationsFilterOptions:$this->relationsFilterOptions());
 
-       if(method_exists($this, 'searchFields')) $filterbuilder->setFilter(searchFields:$this->searchFields());
+       if(method_exists($this, 'searchFields')) $filterbuilder->setFilterOption(searchFields:$this->searchFields());
 
-       if(method_exists($this, 'filterOptions')) $filterbuilder->setFilter(filterOptions:$this->filterOptions());
+       if(method_exists($this, 'filterOptions')) $filterbuilder->setFilterOption(filterOptions:$this->filterOptions());
         
         return $filterbuilder;
     }
