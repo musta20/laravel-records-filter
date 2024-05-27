@@ -14,6 +14,7 @@ class LaravelFilterServiceProvider extends ServiceProvider
     {
       
         $this->loadViewsFrom(__DIR__ .'/resources/views', 'laravelFilter');
+        Blade::componentNamespace('Musta20\LaravelFilter\View\Components', 'laravelFilter');
 
     }
 

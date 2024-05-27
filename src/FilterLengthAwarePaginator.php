@@ -16,7 +16,6 @@ class FilterLengthAwarePaginator  extends LengthAwarePaginator
 
     public function testLinks()
     {
-
         return $this->renderFilter();
     }
 
