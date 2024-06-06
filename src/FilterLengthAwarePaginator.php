@@ -2,6 +2,7 @@
 
 namespace Musta20\LaravelFilter;
 
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 
@@ -19,7 +20,6 @@ class FilterLengthAwarePaginator  extends LengthAwarePaginator
         return $this->renderFilter();
     }
 
-
     function __construct($items, $total, $perPage, $currentPage = null, array $options = [], $sortFilterOptions, $relationsFilterOptions, $searchFields, $filterOptions)
     {
         parent::__construct($items, $total, $perPage, $currentPage,  $options);
@@ -33,24 +33,48 @@ class FilterLengthAwarePaginator  extends LengthAwarePaginator
         if ($filterOptions) $this->filterOptions = $filterOptions;
     }
 
-    public function buildUri($param)
+    public function rebuildUrlWithoutParams(Request $request, array $paramsToRemove) : string {
+        $baseUrl = $request->url(); 
+        $queryParams = $request->query();
+
+        // Remove specified parameters from the array
+        foreach ($paramsToRemove as $param) {
+            if (array_key_exists($param, $queryParams)) {
+                unset($queryParams[$param]);
+            }
+        }
+
+        // Build the new query string
+        $queryString = http_build_query($queryParams);
+
+        // Conditionally add the query string to the URL
+        if (!empty($queryString)) {
+            $baseUrl .= '?' . $queryString;
+        }
+
+       // return $baseUrl;
+    return 'formfilterTest?'.$queryString;
+    }
+    public function buildUri($param=null)
     {
+
+        if($param==null) return url()->current();
 
         $queryParams = request()->query();
 
         $newuri = url()->current();
 
-        foreach ($param as $key => $value) {
+            foreach ($param as $key => $value) {
 
-            unset($queryParams[$key]);
-        }
+                unset($queryParams[$key]);
+            }
 
         $newuri = $newuri . '?' . http_build_query($queryParams);
 
-        foreach ($param as $key => $value) {
+            foreach ($param as $key => $value) {
 
-            $newuri = $newuri . '&' . $key . '=' . $value;
-        }
+                $newuri = $newuri . '&' . $key . '=' . $value;
+            }
 
         return $newuri;
     }
@@ -80,10 +104,7 @@ class FilterLengthAwarePaginator  extends LengthAwarePaginator
     {
 
         return static::viewFactory()->make($view ?: static::$defaultFilterView, array_merge($data, [
-
             'paginator' => $this,
-
-
         ]));
     }
 }
