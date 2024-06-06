@@ -1,7 +1,12 @@
 <form @if (app()->getLocale() === 'ar')
     dir="rtl"
     @endif
-    method="GET" action="{{ request()->fullUrlWithQuery(request()->query()) }}" class="relative ">
+
+    @submit.prevent="submitFilter"
+
+    id="search"
+   
+    class="relative ">
 
     <div class="absolute inset-y-0 start-0 rtl:end-10 flex items-center ps-3 pointer-events-none">
         <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -24,7 +29,7 @@
     <div class="absolute left-0 inset-y-0   flex items-center ">
 
         <button
-            class="  inline-flex items-center text-gray-500 border border-gray-300  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-l-lg text-sm px-3 py-2">{{
+            class="inline-flex items-center text-gray-500 border border-gray-300  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-l-lg text-sm px-3 py-2">{{
             __('Search') }}</button>
     </div>
 
@@ -35,7 +40,7 @@
     <div class="absolute right-0 inset-y-0   flex items-center ">
 
         <button
-            class="  inline-flex items-center text-gray-500 border border-gray-300  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-r-lg text-sm px-3 py-2">{{
+            class="inline-flex items-center text-gray-500 border border-gray-300  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-r-lg text-sm px-3 py-2">{{
             __('Search') }}</button>
     </div>
 
