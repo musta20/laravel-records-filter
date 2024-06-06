@@ -99,7 +99,7 @@ trait HasFilter
 
                             $max = max($value[$rangeItem['options'][0]], $value[$rangeItem['options'][1]]);
 
-                            $query->whereBetween( $value['filed'], [$min,$max]);
+                            $query->whereBetween( $this->getTable() . '.' . $value['filed'], [$min,$max]);
 
                         }
 

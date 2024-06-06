@@ -59,7 +59,7 @@
 
                             @endif
                                 
-                                value="{{$option->id}}">
+                                value="{{json_encode(["id" => $option->id, "label" => $option->name])}}">
 
                                 {{$option->name}}
 

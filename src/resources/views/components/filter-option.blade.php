@@ -14,7 +14,7 @@
 
     <!-- Dropdown menu -->
     <div x-cloak x-show="openMenu" id="dropdownAction"
-        class="z-10 mt-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44  ">
+        class="z-10 mt-10 absolute bg-white divide-y dark:bg-gray-800 divide-gray-100 rounded-lg shadow w-auto  ">
         <form 
          @submit.prevent="submitFilter()" id="filter" method="get">
 
@@ -39,12 +39,24 @@
                     $checkBoxData =  $relRequestData->where('filed', $item['filed']);
 
                     @endphp
-
-                    <li class="p-2" x-data="{ selected: 0 }">
-
+               
+                    <li class="p-2" >
+                        <label  class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {{ $item['label'] }}
+                        </label>
                         @foreach ($item['options'] as $key=>$optionItem)
                         
-                        <div class="mb-3">
+                        <div class="flex items-center mb-4">
+                            {{-- x-model="FilterForm.filter[{{$arrayIndexCounter}}][value]" --}}
+                            <input  type="checkbox"
+                            value="{{$optionItem}}" 
+                            @checked(isset($checkBoxData) && $checkBoxData->where('value', $optionItem)->first())
+
+                            name="filter[{{$arrayIndexCounter}}][value]"
+
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                 
+                            <label  class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$key}}</label>
 
                             <input {{-- x-model="FilterForm.filter[{{$arrayIndexCounter}}][filed]" --}}
                                 name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}" hidden>
@@ -52,14 +64,9 @@
                             <input {{-- x-model="FilterForm.filter[{{$arrayIndexCounter}}][operation]" --}}
                                 name="filter[{{$arrayIndexCounter}}][operation]" value="{{$item['operation']}}" hidden>
 
-                            <input {{-- x-model="FilterForm.filter[{{$arrayIndexCounter}}][value]" --}}
-                                name="filter[{{$arrayIndexCounter}}][value]"
-                                
-                                @checked(isset($checkBoxData) && $checkBoxData->where('value', $optionItem)->first())
-                              
-                                value="{{$optionItem}}" type="checkbox">
+                       
 
-                            <label>{{$key}}</label>
+                                
 
                         </div>
 
@@ -207,24 +214,14 @@
 
             </ul>
             <button
-                class="w-full text-white m-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                class=" text-white m-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 type="submit">
                 {{__('filter')}}
             </button>
         </form>
     </div>
 
-    {{-- @if (request()->has('filed') || request()->has('search') || request()->has('orderType'))
-    <a class="flex pt-2 p-2 rounded-md border mx-2  text-gray-500 text-xs" href="{{ request()->url() }}">
-
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
-            <path
-                d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
-        </svg>
-
-        <span> {{__('clear filter')}}</span>
-    </a>
-    @endif --}}
+    
 
 
 

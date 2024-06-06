@@ -1,8 +1,7 @@
-@props(['tag','text'=>null])
-<div  class="flex gap-2 border-t border-gray-200 dark:border-gray-700  p-2.5" >
+@props(['tag','text'=>null,'index'=>null])
 
 
-<span class="flex pt-2 p-2 rounded-md border mx-2  text-gray-500 text-xs">
+<span class="flex justify-between w-auto p-1 rounded-md border text-gray-500 dark:border-gray-500 border:gray-300 text-xs">
 
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 mx-1">
         <path
@@ -10,10 +9,13 @@
     </svg>
 
     {{ $text ? $text : urldecode(request($tag)) }}
-
     <button 
-
+    @isset($index)
+    @click="submitFilter({type:'{{$tag}}',index:{{$index}}})"
+    @else
     @click="submitFilter({type:'{{$tag}}'})"
+
+    @endisset
 
 >        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
             <path
@@ -25,4 +27,3 @@
 </span>
 
 
-</div>
