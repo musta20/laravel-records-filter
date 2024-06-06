@@ -4,128 +4,199 @@ namespace Musta20\LaravelFilter;
 
 
 
-use App\Enums\Sorting;
 use App\Enums\PublishStatus;
+use Carbon\Carbon;
 use Illuminate\Collection;
 use Musta20\LaravelFilter\FilterBuilder;
-
 use Illuminate\Database\Eloquent\Builder;
+use Musta20\LaravelFilter\enum\Sorting;
+use Illuminate\Support\Facades\App;
 
-trait HasFilter{
+trait HasFilter
+{
 
     protected string $defaultSimpleView  = 'components.filter';
 
 
     public function newEloquentBuilder($query): Builder
     {
-        //sortFilterOptions
-        //relationsFilterOptions
-        //searchFields
-        //filterOptions
-                
+
         $filterbuilder  = new FilterBuilder($query);
 
-       if(method_exists($this, 'sortFilterOptions')) $filterbuilder->setFilterOption(sortFilterOptions:$this->sortFilterOptions());
+        if (method_exists($this, 'sortFilterOptions')) $filterbuilder->setFilterOption(sortFilterOptions: $this->sortFilterOptions());
 
-       if(method_exists($this, 'relationsFilterOptions')) $filterbuilder->setFilterOption(relationsFilterOptions:$this->relationsFilterOptions());
+        if (method_exists($this, 'relationsFilterOptions')) $filterbuilder->setFilterOption(relationsFilterOptions: $this->relationsFilterOptions());
 
-       if(method_exists($this, 'searchFields')) $filterbuilder->setFilterOption(searchFields:$this->searchFields());
+        if (method_exists($this, 'searchFields')) $filterbuilder->setFilterOption(searchFields: $this->searchFields());
 
-       if(method_exists($this, 'filterOptions')) $filterbuilder->setFilterOption(filterOptions:$this->filterOptions());
-        
+        if (method_exists($this, 'filterOptions')) $filterbuilder->setFilterOption(filterOptions: $this->filterOptions());
+
         return $filterbuilder;
     }
-    public static function ShowFilter($view = null,$relType=null,$relName = null,Collection $realData = null)
+
+    public static function scopeRequestPaginate($query)
     {
-
-        return view($view ?: "components.filter", [
-            'filterFiled' => self::$filterFiled,
-            'realData' => $realData,
-            'relName' => $relName,
-            'relType' => $relType
-        ]);
-    }
-
-    public static function ShowCustomFilter($filterFiled = null,$view = null,$relType=null,$relName = null,Collection $realData = null)
-    {
-
-        return view($view ?: "components.filter", [
-            'filterFiled' => $filterFiled ?? self::$filterFiled,
-            'realData' => $realData,
-            'relName' => $relName,
-            'relType' => $relType
-        ]);
-    }
-
-    public static function scopeRequestPaginate($query){
 
         $request = request();
-        $itemsPerPage = $request->itemsPerPage ?? 10;
-        
+        $limit = $request->limit ?? 10;
+
         $request->validate([
-            'itemsPerPage' => 'nullable|integer|min:2|max:100'
+            'limit' => 'nullable|integer|min:2|max:100'
         ]);
 
-        return  $query->paginate($itemsPerPage);
+        return  $query->paginate($limit);
     }
 
-    public function scopeFilter($query)    
+    public function scopeFilter($query)
     {
-
-
+       // dd(request()->query());
+              
         $relation = request()->query()['rel'] ?? null;
-        $relationId = request()->query()['id'] ?? null;
-        
-        $orderType = request()->query()['orderType'] ?? null;
 
-        $filed = request()->query()['filed'] ?? null;
+        $sort = request()->query()['sort'] ?? null;
 
-        $value = request()->query()['value'] ?? null;
+        $filter = request()->query()['filter'] ?? null;
 
         $searchTerm = request()->query()['search'] ?? null;
 
-        
 
-        if ($relation ) {
-            $query->whereHas($relation, function ($query) use ( $relationId) {
+        if ($sort) {
 
-                $query->where('id',  $relationId);
+            $sort = json_decode(urldecode($sort[0]));
 
-            });
 
+            $thismodelName = $this->getTable();
+            if ($sort)  switch ($sort->type) {
+                case 'ASC':
+                    $query->orderBy($thismodelName . "." . $sort->filed);
+                    break;
+                case 'DESC':
+                    $query->orderBy($thismodelName . "." . $sort->filed, 'desc');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if ($filter) {
+
+            $filterOption = collect($this->filterOptions());
+
+            $collectedFilter = collect($filter);
+            
+            foreach ($collectedFilter as $key => $value) {
+                
+                if (isset($value['operation']) && $value['operation'] == 'between') {
+
+                    $rangeItem =  $filterOption->where("filed", $value['filed'])->where("operation", "between")->first();
+
+                    if ($rangeItem) {
+
+                        if (isset($value[$rangeItem['options'][0]]) && isset($value[$rangeItem['options'][1]]))
+                         {
+
+                            $min = min($value[$rangeItem['options'][0]], $value[$rangeItem['options'][1]]);
+
+                            $max = max($value[$rangeItem['options'][0]], $value[$rangeItem['options'][1]]);
+
+                            $query->whereBetween( $value['filed'], [$min,$max]);
+
+                        }
+
+                    }
+
+                } elseif (isset($value['value'])  && isset($value['filed'])) {
+                    
+                    
+
+                    $value['operation'] = isset($value['operation']) ? urldecode($value['operation']): '=';
+
+                    $filteringItem =  $filterOption->where("filed", $value['filed'])->first();
+
+                    
+                    if($filteringItem['type'] == 'date'){
+
+                        $query->whereDate($this->getTable() . '.' . $value['filed'],  $value['value']);
+
+                    }else{
+
+                        $valCoutn = $collectedFilter->where("filed", $value['filed']);
+
+
+                        if(count($valCoutn) > 1) 
+                        {
+                           
+                            
+                            $query->whereIn($this->getTable() . '.' . $value['filed'], $valCoutn->pluck('value')->toArray());
+                            
+                            continue;
+                        }
+
+                        $query->where($this->getTable() . '.' . $value['filed'], $value['operation'], $value['value']);
+
+
+                    }
+               
+                }
+            }
+        }
+
+        if ($relation) {
+
+            foreach ($relation as $key => $value) {
+
+                $relModelName = collect(self::relationsFilterOptions())->where('id', $value['filed'])->first()['model'];
+
+                $tableName =  $this->getModelName($relModelName);
+
+                $currrentModelName = $this->getTable();
+
+                $ModelPrymaryId = $this->getModelKeyName($relModelName);
+
+                $query
+                    ->join($tableName, $currrentModelName . '.' . $value['filed'], '=', $tableName . '.' . $ModelPrymaryId)
+                    ->where($tableName . '.' . $ModelPrymaryId,  $value['value']);
+            }
         }
 
         if ($searchTerm) {
+            $currrentModelName = $this->getTable();
+            
+            $query->where(function ($query) use ($searchTerm ,$currrentModelName) {
 
-            $query->where(function ($query) use ($searchTerm) {
-                foreach (self::$searchField as $columnName) {
-                    $query->orWhere($columnName, 'like', "%{$searchTerm}%");
+                foreach ($this->searchFields() as $columnName) {
+                   
+                   $searchTerm=  urldecode($searchTerm);
+
+                   $query->orWhere($currrentModelName.'.'.$columnName, 'like', "%{$searchTerm}%");
                 }
+
             });
-
+        
+        
         }
 
 
-        switch ($orderType) {
-            case Sorting::EQULE->value:
-                $query->where($filed, $value);
-                break;
-            case Sorting::DESC->value:
-                $query->orderBy($filed, 'desc');
-                break;
-            case Sorting::ASC->value:
-                $query->orderBy($filed);
-                break;
-            case Sorting::NEWEST->value:
-                $query->orderBy($filed, 'desc');
-                break;
-            case Sorting::OlDEST->value:
-                $query->orderBy($filed);
-                break;
-        }
+        return $query->RequestPaginate();
 
-        return $query;
-    }   
+    }
+
+    public function getModelName($model)
+    {
+
+        $model = App::make($model);
+
+        return $model->getTable();
+    }
+    public function getModelKeyName($model)
+    {
+
+        $model = App::make($model);
+
+        return $model->getKeyName();
+    }
+
+
 
     public function scopeOrderByType($query, $orderType, $isAdmin)
     {
@@ -138,44 +209,38 @@ trait HasFilter{
         }
 
         if ($isAdmin) {
-            
+
             switch ($orderType['sortType']) {
-                case PublishStatus::PUBLISHED->value:
-                    $query->where('status', PublishStatus::PUBLISHED->value);
-                    break;
-                case PublishStatus::DRAFT->value:
-                    $query->where('status', PublishStatus::DRAFT->value);
-                    break;
-                case PublishStatus::CREATED->value:
-                    $query->where('status', PublishStatus::CREATED->value);
-                    break;
+                    // case PublishStatus::PUBLISHED->value:
+                    //     $query->where('status', PublishStatus::PUBLISHED->value);
+                    //     break;
+                    // case PublishStatus::DRAFT->value:
+                    //     $query->where('status', PublishStatus::DRAFT->value);
+                    //     break;
+                    // case PublishStatus::CREATED->value:
+                    //     $query->where('status', PublishStatus::CREATED->value);
+                    //     break;
             }
         }
 
         switch ($orderType['sortType']) {
-            case Sorting::AVG_COUSTMER->value:
-                $query->orderBy('rating', 'desc');
-                break;
-            case Sorting::BEST_SELLING->value:
-                $query->orderBy('order_count', 'desc');
-                break;
-            case Sorting::NEWEST->value:
-                $query->orderBy('created_at', 'desc');
-                break;
-            case Sorting::HIGHT_TO_LOW->value:
-                $query->orderBy('price', 'desc');
-                break;
-            case Sorting::LOW_TO_HIGHT->value:
-                $query->orderBy('price');
-                break;
+                // case Sorting::AVG_COUSTMER->value:
+                //     $query->orderBy('rating', 'desc');
+                //     break;
+                // case Sorting::BEST_SELLING->value:
+                //     $query->orderBy('order_count', 'desc');
+                //     break;
+                // case Sorting::NEWEST->value:
+                //     $query->orderBy('created_at', 'desc');
+                //     break;
+                // case Sorting::HIGHT_TO_LOW->value:
+                //     $query->orderBy('price', 'desc');
+                //     break;
+                // case Sorting::LOW_TO_HIGHT->value:
+                //     $query->orderBy('price');
+                //     break;
         }
 
         return $query;
     }
-
-
 }
-
-
-
-?>
