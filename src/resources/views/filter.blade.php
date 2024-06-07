@@ -5,7 +5,7 @@
     <div class="flex  items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4  ">
 
         {{-- pagination per page items --}}
-        <x-laravelFilter::paginator :paginator="$paginator" />
+        {{-- <x-laravelFilter::paginator :paginator="$paginator" /> --}}
 
         {{-- sorting options --}}
         @if ($paginator->filterOptions)
