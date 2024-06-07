@@ -58,7 +58,7 @@
 
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
 
-                                    <label  class="block  mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+                                    <label  class="block p-2 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
 
                                 
                                 >{{ $key }}</label>
@@ -91,7 +91,7 @@
 
                         @endphp
                         <li class="p-2">
-                            <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label>
+                            <label  class="block  p-2 mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label>
 
                             <input name="filter[{{ $arrayIndexCounter }}][filed]" value="{{ $item['filed'] }}" hidden>
 
@@ -143,7 +143,7 @@
                                 type="radio" name="filter[{{ $arrayIndexCounter }}][value]" value="{{ $RadioItem }}">
 
 
-                                <label class="block  mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $key }}</label>
+                                <label class="block  p-2 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $key }}</label>
 
                             </div>
 
@@ -194,7 +194,7 @@
                             <label class="block bg-slate-500 p-2 dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300" >{{ $item['label'] }}</label>
 
                             <div class="mb-6">
-                                <label  class="block  mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $item['options'][0] }}</label>
+                                <label  class="block  p-2 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $item['options'][0] }}</label>
                                 <input
                                 @if (isset($rangeData) && isset($rangeData[$item['options'][0]]))
                                 value="{{ $rangeData[$item['options'][0]] }}"
@@ -209,7 +209,7 @@
 
 
                             <div class="mb-6">
-                                <label  class="block  mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $item['options'][0] }}</label>
+                                <label  class="block  p-2 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $item['options'][0] }}</label>
                                 <input
                                 @if (isset($rangeData) && isset($rangeData[$item['options'][1]]))
                                 value="{{ $rangeData[$item['options'][1]] }}"
