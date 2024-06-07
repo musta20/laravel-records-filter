@@ -21,20 +21,15 @@
 
         <!-- Dropdown menu -->
         <div x-cloak x-show="openMenuFilter" id="dropdownAction"
-            class="z-10  absolute bg-white  dark:bg-gray-800 divide-gray-100 rounded-lg shadow w-auto  ">
+            class="z-10  absolute bg-white  dark:bg-gray-800 divide-gray-100 rounded-lg shadow min-w-42  ">
 
-            {{-- sorting options --}}
             @if ($paginator->filterOptions)
 
             <x-laravelFilter::filter :paginator="$paginator" />
 
             @endif
 
-            @if ($paginator->sortFilterOptions)
-
-            <x-laravelFilter::sort-filter :paginator="$paginator" />
-
-            @endif
+   
 
             {{-- relations filter options --}}
             @if ($paginator->relationsFilterOptions)
@@ -48,7 +43,13 @@
         </div>
 
         <div class="flex gap-3">
+                        {{-- sorting options --}}
 
+            @if ($paginator->sortFilterOptions)
+
+            <x-laravelFilter::sort-filter :paginator="$paginator" />
+
+            @endif
             {{-- search --}}
             <x-laravelFilter::search />
 
