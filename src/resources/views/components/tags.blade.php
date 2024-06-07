@@ -40,8 +40,8 @@
             @endphp
 
 
-            <x-laravelFilter::tag-filters index="{{$key}}" tag="rel"
-                text="{{$relItem['label'] .' : '. urldecode($item['label'])}}" />
+            <x-laravelFilter::tag-filters index="{{ $key }}" tag="rel"
+                text="{{ $relItem['label'] .' : '. urldecode($item['label']) }}" />
 
 
         @endforeach
@@ -74,10 +74,10 @@
         {
 
         $relItem =$data->where('filed', $item['filed'])->first();
-        
+
         }
 
-  
+
   @endphp
 
     @if ( isset($relItem) &&
@@ -87,18 +87,18 @@
     isset($item[$relItem['options'][1]]))
 
 
-        <x-laravelFilter::tag-filters index="{{$key}}" tag="filter"
-            text="{{$relItem['label'] .' : '.$item[$relItem['options'][0]].' - '.$item[$relItem['options'][1]]}}" />
+        <x-laravelFilter::tag-filters index="{{ $key }}" tag="filter"
+            text="{{ $relItem['label'] .' : '.$item[$relItem['options'][0]].' - '.$item[$relItem['options'][1]] }}" />
 
         @elseif (isset($relItem['options']) && isset($item['value']) && $relItem['type'] != 'range')
 
-        <x-laravelFilter::tag-filters index="{{$key}}" tag="filter"
-            text="{{$relItem['label'] .' : '.array_search($item['value'], $relItem['options'])}}" />
+        <x-laravelFilter::tag-filters index="{{ $key }}" tag="filter"
+            text="{{ $relItem['label'] .' : '.array_search($item['value'], $relItem['options']) }}" />
 
-        @elseif(isset($relItem['type']) && $relItem['type'] != 'range')
+        @elseif (isset($relItem['type']) && $relItem['type'] != 'range')
 
 
-        <x-laravelFilter::tag-filters index="{{$key}}" tag="filter"
+        <x-laravelFilter::tag-filters index="{{ $key }}" tag="filter"
             text="{{ $relItem['label'] .' : '.urldecode($item['value']) }}" />
 
 

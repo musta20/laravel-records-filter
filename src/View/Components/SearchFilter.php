@@ -8,8 +8,9 @@ class SearchFilter extends Component
 {
     public function __construct(public $paginator)
     {
-    
+
     }
+
     public function render()
     {
         return view('laravelFilter::components.search');

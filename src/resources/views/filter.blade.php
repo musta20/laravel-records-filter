@@ -1,5 +1,5 @@
 <script >
-    
+
     document.addEventListener("alpine:init", () => {
     Alpine.data("FilterForm", () => ({
         submitFilter: function (removeFilter = null) {
@@ -20,14 +20,14 @@
                     case "filter":
 
                     indexToRemove = "filter["+removeFilter.index+"]";
-                    
+
                     let newrFilter = new FormData();
 
                     for (const [key, value] of filter) {
 
                             if (!key.startsWith(indexToRemove)) {
-                         
-                                
+
+
                                 newrFilter.append(key, value);
 
                         }
@@ -48,7 +48,7 @@
                     for (const [key, value] of rel) {
 
                             if (!key.startsWith(indexToRemove)) {
-                         
+
                                 newrel.append(key, value);
 
                         }
@@ -58,7 +58,7 @@
                     case "search":
                     search = new FormData();
                         break;
-        
+
                     default:
                         break;
                 }
@@ -121,7 +121,7 @@
 
                         if(formElement=="rel" && key.includes('[value]'))
                         {
-                          
+
                         relItemOption =  JSON.parse(value);
 
                          ItemIndex  = stringToArray(key);
@@ -130,7 +130,7 @@
 
                          newFormDataEaV.append(key, relItemOption.id);
                          newFormDataEaV.append(fulllabelIndex,relItemOption.label );
-            
+
 
                            continue;
                         }

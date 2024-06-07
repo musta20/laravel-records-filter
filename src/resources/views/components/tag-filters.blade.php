@@ -9,11 +9,11 @@
     </svg>
 
     {{ $text ? $text : urldecode(request($tag)) }}
-    <button 
+    <button
     @isset($index)
-    @click="submitFilter({type:'{{$tag}}',index:{{$index}}})"
+    @click="submitFilter({type:'{{ $tag }}',index:{{ $index }}})"
     @else
-    @click="submitFilter({type:'{{$tag}}'})"
+    @click="submitFilter({type:'{{ $tag }}'})"
 
     @endisset
 
