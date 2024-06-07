@@ -6,6 +6,7 @@
     <div x-data="{ openMenuFilter: false }"
         class="flex  items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4  ">
 
+        <div>
         <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
             @click="openMenuFilter = ! openMenuFilter"
             class="inline-flex items-center text-gray-500 border border-gray-500  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
@@ -43,7 +44,7 @@
             @endif
         </div>
 
-
+        </div>
 
         <div class="flex gap-3">
 
