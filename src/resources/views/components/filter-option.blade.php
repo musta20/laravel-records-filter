@@ -34,173 +34,193 @@
 
                     @case('checkbox')
 
-                    @php
-
-                    $checkBoxData =  $relRequestData->where('filed', $item['filed']);
-
-                    @endphp
-               
-                    <li class="p-2" >
-                        <label  class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                            {{ $item['label'] }}
-                        </label>
-                        @foreach ($item['options'] as $key=>$optionItem)
-                        
-                        <div class="flex items-center mb-4">
-                            {{-- x-model="FilterForm.filter[{{$arrayIndexCounter}}][value]" --}}
-                            <input  type="checkbox"
-                            value="{{$optionItem}}" 
-                            @checked(isset($checkBoxData) && $checkBoxData->where('value', $optionItem)->first())
-
-                            name="filter[{{$arrayIndexCounter}}][value]"
-
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                 
-                            <label  class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$key}}</label>
-
-                            <input {{-- x-model="FilterForm.filter[{{$arrayIndexCounter}}][filed]" --}}
-                                name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}" hidden>
-
-                            <input {{-- x-model="FilterForm.filter[{{$arrayIndexCounter}}][operation]" --}}
-                                name="filter[{{$arrayIndexCounter}}][operation]" value="{{$item['operation']}}" hidden>
-
-                       
-
-                                
-
-                        </div>
-
                         @php
-                        $arrayIndexCounter++;
+
+                            $checkBoxData =  $relRequestData->where('filed', $item['filed']);
+
                         @endphp
-                        
-                        @endforeach
+                
+                        <li class="p-2" >
+                            <label  class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                {{ $item['label'] }}
+                            </label>
+                            @foreach ($item['options'] as $key=>$optionItem)
+                            
+                            <div class="flex items-center mb-4">
 
-                    </li>
-                    @break
+                                {{-- x-model="FilterForm.filter[{{$arrayIndexCounter}}][value]" --}}
+                                
+                                <input  type="checkbox"
+                                value="{{$optionItem}}" 
+                                @checked(isset($checkBoxData) && $checkBoxData->where('value', $optionItem)->first())
 
-                    @case('select')
-                    @php
+                                name="filter[{{$arrayIndexCounter}}][value]"
+
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     
-                        $selectData =  $relRequestData->where('filed', $item['filed']);
-                                     
-                    @endphp
-                    <li class="p-2">
+                                <label  class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$key}}</label>
 
-                        <input name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}" hidden>
+                                <input {{-- x-model="FilterForm.filter[{{$arrayIndexCounter}}][filed]" --}}
+                                    name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}" hidden>
 
-                        <select
-                            class="text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                            name="filter[{{$arrayIndexCounter}}][value]">
+                                <input {{-- x-model="FilterForm.filter[{{$arrayIndexCounter}}][operation]" --}}
+                                    name="filter[{{$arrayIndexCounter}}][operation]" value="{{$item['operation']}}" hidden>
 
-                            <option disabled selected value> -- select an option -- </option>
+                        
 
-                            @foreach ($item['options'] as $key=>$SelectItem)
-                            <option 
-                            @selected(isset($selectData) && $selectData->where('value', $SelectItem)->first())
+                                    
 
-                            value="{{$SelectItem}}">{{$key}}</option>
-
-                            @endforeach
+                            </div>
 
                             @php
                             $arrayIndexCounter++;
                             @endphp
+                            
+                            @endforeach
+
+                        </li>
+                    @break
+
+                    @case('select')
+                        @php
+                        
+                            $selectData =  $relRequestData->where('filed', $item['filed']);
+                                        
+                        @endphp
+                        <li class="p-2">
+                            <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
+
+                            <input name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}" hidden>
+
+                            <select
+
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            name="filter[{{$arrayIndexCounter}}][value]">
+
+                                <option disabled selected value> -- select an option -- </option>
+
+                                @foreach ($item['options'] as $key=>$SelectItem)
+                                <option 
+                                @selected(isset($selectData) && $selectData->where('value', $SelectItem)->first())
+
+                                value="{{$SelectItem}}">{{$key}}</option>
+
+                                @endforeach
+
+                                @php
+                                $arrayIndexCounter++;
+                                @endphp
 
 
-                        </select>
-                    </li>
+                            </select>
+                        </li>
                     @break
 
                     @case('radio group')
-                    @php
-                    
-                        $radioGroupData =  $relRequestData->where('filed', $item['filed']);
-                                 
-                     @endphp
-                    <li class="p-2" x-data="{ selected: 0 }">
-
-                        <input name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}" hidden>
-
-                        @foreach ($item['options'] as $key=>$RadioItem)
-                        <input 
-                        
-                        @checked(isset($radioGroupData) && $radioGroupData->where('value', $RadioItem)->first())
-
-                        type="radio" name="filter[{{$arrayIndexCounter}}][value]" value="{{$RadioItem}}">
-                        <label>{{$key}}</label>
-
-                        @endforeach
                         @php
-                        $arrayIndexCounter++;
+                        
+                            $radioGroupData =  $relRequestData->where('filed', $item['filed']);
+                                    
                         @endphp
-                    </li>
-                    @break
+                        <li class="p-2" >
+
+                                <input name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}" hidden>
+
+                                <label class="ms-2 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$item['label']}}</label>
+
+                                @foreach ($item['options'] as $key=>$RadioItem)
+                                <div class="flex items-center mb-4">
+
+                                <input 
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                @checked(isset($radioGroupData) && $radioGroupData->where('value', $RadioItem)->first())
+
+                                type="radio" name="filter[{{$arrayIndexCounter}}][value]" value="{{$RadioItem}}">
+
+
+                                <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$key}}</label>
+
+                            </div>
+
+                                @endforeach
+                                @php
+                                $arrayIndexCounter++;
+                                @endphp
+
+
+                        </li>
+                        @break
 
                     @case('date')
-                    @php
-                        $dateData =  $relRequestData->where('filed', $item['filed'])->where('operation','!=','between')->first();
-                        
-                    @endphp
-                    <li class="p-2" x-data="{ selected: 0 }">
-                        <label>{{$item['label']}}</label>
 
-                        <input
-                            class="text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                            name="filter[{{$arrayIndexCounter}}][value]" 
+                        @php
+                            $dateData =  $relRequestData->where('filed', $item['filed'])->where('operation','!=','between')->first();
+                        @endphp
 
-                            @if(isset($dateData))
-                            value="{{$dateData['value']}}"
-                            @endif
+                        <li class="p-2">
 
-                            type="date">
+                            <div class="mb-6">
+                                <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
+                                <input 
+                                name="filter[{{$arrayIndexCounter}}][value]" 
 
-                        <input hidden name="filter[{{$arrayIndexCounter}}][operation]" value="{{$item['operation']}}">
-                        <input hidden name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}">
-                    </li>
+                                @if(isset($dateData))
+                                value="{{$dateData['value']}}"
+                                @endif
+                                type="date"
+                                class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div>
+
+                            <input hidden name="filter[{{$arrayIndexCounter}}][operation]" value="{{$item['operation']}}">
+                            <input hidden name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}">
+                        </li>
                     @break
 
                     @case('range')
+
                         @php
 
                             $rangeData =  $relRequestData->where('filed', $item['filed'])->where('operation','=','between')->first();
 
-                            // dd($dateData);
                         @endphp
-                    <li class="p-2" x-data="{ selected: 0 }">
-                        <label>{{$item['label']}}</label>
 
-                        <div>
-                            <label>{{$item['options'][0]}}</label>
+                        <li class="p-2">
 
-                            <input
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >{{$item['label']}}</label>
 
-                            @if(isset($rangeData) && isset($rangeData[$item['options'][0]]))
-                            value="{{$rangeData[$item['options'][0]]}}"
-                            @endif
+                            <div class="mb-6">
+                                <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['options'][0]}}</label>
+                                <input 
+                                @if(isset($rangeData) && isset($rangeData[$item['options'][0]]))
+                                value="{{$rangeData[$item['options'][0]]}}"
+                                @endif
 
-                                class="text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+
+                                class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                
                                 name="filter[{{$arrayIndexCounter}}][{{$item['options'][0]}}]" 
                                 @if ($item['inputType']==='number' ) type="number" @else type="date" @endif>
-
-                        </div>
-
-                        <div>
-                            <label>{{$item['options'][1]}}</label>
-
-                            <input
-                            @if(isset($rangeData) && isset($rangeData[$item['options'][1]]))
-                            value="{{$rangeData[$item['options'][1]]}}"
-                            @endif
-                                class="text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                                name="filter[{{$arrayIndexCounter}}][{{$item['options'][1]}}]"
-                                 @if ($item['inputType']==='number' ) type="number" @else type="date" @endif>
-                        </div>
+                            </div>
 
 
-                        <input hidden name="filter[{{$arrayIndexCounter}}][operation]" value="{{$item['operation']}}">
-                        <input hidden name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}">
-                    </li>
+                            <div class="mb-6">
+                                <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['options'][0]}}</label>
+                                <input 
+                                @if(isset($rangeData) && isset($rangeData[$item['options'][1]]))
+                                value="{{$rangeData[$item['options'][1]]}}"
+                                @endif
+
+
+                                class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                
+                                name="filter[{{$arrayIndexCounter}}][{{$item['options'][1]}}]" 
+                                @if ($item['inputType']==='number' ) type="number" @else type="date" @endif>
+
+                            </div>
+
+                            <input hidden name="filter[{{$arrayIndexCounter}}][operation]" value="{{$item['operation']}}">
+                            <input hidden name="filter[{{$arrayIndexCounter}}][filed]" value="{{$item['filed']}}">
+                        </li>
                     @break
                 @default
 

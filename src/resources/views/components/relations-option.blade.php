@@ -1,7 +1,7 @@
 <div class="flex" x-data="{ openMenu: false }">
 
     <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" @click="openMenu = ! openMenu"
-        class="inline-flex items-center text-gray-500 border border-gray-300  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
+        class="inline-flex items-center text-gray-500 border dark:border-gray-500 border-gray-300  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
         type="button">
         {{__('Relations')}}
         <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -14,7 +14,7 @@
 
 
     <div x-cloak x-show="openMenu" id="dropdownAction"
-        class="z-10 mt-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-50  ">
+    class="z-10 mt-10 absolute bg-white divide-y dark:bg-gray-800 divide-gray-100 rounded-lg shadow w-auto  ">
 
         <form @submit.prevent="submitFilter" id="rel" method="get">
             <ul class="py-1 text-sm text-gray-700 " aria-labelledby="dropdownActionButton">
@@ -24,6 +24,7 @@
                 $arrayIndexCounter = 0;
 
                 if (request()->has('rel')){
+
                     $relRequestData = collect(request()->get('rel'));
                 }
 
@@ -31,16 +32,18 @@
 
                 @foreach ($relationsFilterOptions as $item)
 
-                <li>
-                    <div class="block px-4 py-2 hover:bg-gray-100">
-                        <label>{{$item['label']}}</label>
+                <li class="p-2">
+
+
+                        <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
+
                         <input value="{{$item['id']}}" name="rel[{{$arrayIndexCounter}}][filed]" hidden>
 
                         <select 
 
                             name="rel[{{$arrayIndexCounter}}][value]"
 
-                            class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg  bg-gray-50 focus:ring-blue-500 focus:border-blue-500 ">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                             <option disabled 
                                 @if (!isset($relRequestData) || !$relRequestData->contains('filed', $item['id']))
@@ -71,7 +74,6 @@
                         </select>
 
 
-                    </div>
 
                 </li>
                 @php
@@ -80,7 +82,7 @@
                 @endforeach
             </ul>
             <button
-                class="w-full text-white m-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                class=" text-white m-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 type="submit">
                 {{__('filter')}}
             </button>

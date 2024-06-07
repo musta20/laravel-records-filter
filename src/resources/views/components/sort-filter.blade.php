@@ -5,6 +5,7 @@
 
         <select name="sort[]" id="dropdownActionButton" data-dropdown-toggle="dropdownAction" @change="submitFilter()"
             class="inline-flex items-center text-gray-500 border border-gray-500 w-36  dark:border-gray-500 dark:text-gray-500 dark:bg-gray-800  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
+            
             type="button">
 
             {{__('filter')}}:
@@ -18,7 +19,7 @@
             <!-- Dropdown menu -->
             @if (!request()->has('sort'))
 
-            <option disabled selected value> -- select an option -- </option>
+            <option disabled selected value> sort filter : </option>
 
             @endif
 
