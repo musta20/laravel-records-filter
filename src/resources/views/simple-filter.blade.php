@@ -21,7 +21,7 @@
 
         <!-- Dropdown menu -->
         <div x-cloak x-show="openMenuFilter" id="dropdownAction"
-            class="z-10  absolute bg-white  dark:bg-gray-800 divide-gray-100 rounded-lg shadow min-w-42  ">
+        class=" z-10 mt-3 shadow-lg dark:shadow-gray-400  absolute bg-white  dark:bg-gray-800 divide-gray-100 rounded-lg    ">
 
             @if ($paginator->filterOptions)
 

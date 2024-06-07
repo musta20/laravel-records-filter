@@ -41,7 +41,7 @@
                         @endphp
 
                         <li class="p-2" >
-                            <label  class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <label  class="block bg-slate-500 p-2 dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 {{ $item['label'] }}
                             </label>
                             @foreach ($item['options'] as $key=>$optionItem)
