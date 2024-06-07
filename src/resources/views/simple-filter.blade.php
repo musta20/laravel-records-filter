@@ -21,7 +21,7 @@
 
         <!-- Dropdown menu -->
         <div x-cloak x-show="openMenuFilter" id="dropdownAction"
-            class="z-10 mt-10 absolute bg-white divide-y dark:bg-gray-800 divide-gray-100 rounded-lg shadow w-auto  ">
+            class="z-10  absolute bg-white divide-y dark:bg-gray-800 divide-gray-100 rounded-lg shadow w-auto  ">
 
             {{-- sorting options --}}
             @if ($paginator->filterOptions)
@@ -42,6 +42,7 @@
             <x-laravelFilter::relation-filter :paginator="$paginator" />
 
             @endif
+            
         </div>
 
         </div>
