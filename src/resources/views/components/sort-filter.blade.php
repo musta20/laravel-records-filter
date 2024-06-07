@@ -1,4 +1,3 @@
-<div class="flex" x-data="{ openMenu: false }">
 
     <form id="sort" method="get">
 
@@ -45,7 +44,3 @@
     </form>
 
 
-
-
-
-</div>

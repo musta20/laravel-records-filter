@@ -34,9 +34,9 @@ class FilterLengthAwarePaginator extends LengthAwarePaginator
         }
     }
 
-    public function filterLinks()
+    public function filterLinks($view = null, $data = [])
     {
-        return $this->renderFilter();
+        return $this->renderFilter($view , $data );
     }
 
     /**

@@ -1,4 +1,4 @@
-<div class="flex" x-data="{ openMenu: false }">
+{{-- <div class="flex" x-data="{ openMenuRel: false }">
 
     <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" @click="openMenu = ! openMenu"
         class="inline-flex items-center text-gray-500 border dark:border-gray-500 border-gray-300  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
@@ -11,10 +11,8 @@
         </svg>
     </button>
 
-
-
-    <div x-cloak x-show="openMenu" id="dropdownAction"
-    class="z-10 mt-10 absolute bg-white divide-y dark:bg-gray-800 divide-gray-100 rounded-lg shadow w-auto  ">
+    <div x-cloak x-show="openMenuRel" id="dropdownAction"
+    class="z-10 mt-10 absolute bg-white divide-y dark:bg-gray-800 divide-gray-100 rounded-lg shadow w-auto  "> --}}
 
         <form @submit.prevent="submitFilter" id="rel" method="get">
             <ul class="py-1 text-sm text-gray-700 " aria-labelledby="dropdownActionButton">
@@ -87,5 +85,7 @@
                 {{ __('filter') }}
             </button>
         </form>
-    </div>
-</div>
+
+
+    {{-- </div>
+</div> --}}
