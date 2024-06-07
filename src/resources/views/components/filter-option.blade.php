@@ -69,10 +69,6 @@
                                 <input
                                     name="filter[{{ $arrayIndexCounter }}][operation]" value="{{ $item['operation'] }}" hidden>
 
-
-
-
-
                             </div>
 
                             @php
@@ -91,7 +87,7 @@
 
                         @endphp
                         <li class="p-2">
-                            <label  class="block  p-2 mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label>
+                            <label   class="block bg-slate-500 p-2 dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $item['label'] }}</label>
 
                             <input name="filter[{{ $arrayIndexCounter }}][filed]" value="{{ $item['filed'] }}" hidden>
 
