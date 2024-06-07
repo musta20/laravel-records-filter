@@ -36,7 +36,7 @@ class FilterLengthAwarePaginator extends LengthAwarePaginator
 
     public function filterLinks($view = null, $data = [])
     {
-        return $this->renderFilter($view , $data );
+        return $this->renderFilter($view, $data);
     }
 
     /**
