@@ -39,7 +39,7 @@ class FilterLengthAwarePaginator extends LengthAwarePaginator
         return $this->renderFilter($view, $data);
     }
 
-    public function filterNav( $data = [])
+    public function filterNav($data = [])
     {
         return $this->renderFilter('laravelFilter::search-sort-nav', $data);
     }
@@ -56,6 +56,6 @@ class FilterLengthAwarePaginator extends LengthAwarePaginator
         return static::viewFactory()->make($view ?: static::$defaultFilterView, array_merge($data, [
             'paginator' => $this,
         ]));
-        
+
     }
 }

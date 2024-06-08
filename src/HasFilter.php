@@ -2,10 +2,8 @@
 
 namespace Musta20\LaravelFilter;
 
-use App\Enums\PublishStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\App;
-use Musta20\LaravelFilter\enum\Sorting;
 
 trait HasFilter
 {
@@ -187,6 +185,4 @@ trait HasFilter
 
         return $model->getKeyName();
     }
-
-
 }

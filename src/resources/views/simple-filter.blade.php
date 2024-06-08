@@ -59,7 +59,7 @@
 
             {{-- search --}}
             <x-laravelFilter::search />
-            
+
             @endif
         </div>
     </div>

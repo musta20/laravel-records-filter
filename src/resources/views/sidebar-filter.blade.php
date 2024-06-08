@@ -3,13 +3,12 @@
 
 <div x-data="FilterForm">
 
-    {{-- <x-laravelFilter::tags :paginator="$paginator" /> --}}
 
-    @if ($paginator->filterOptions)
+        @if ($paginator->filterOptions)
 
-    <x-laravelFilter::filter :paginator="$paginator" />
+        <x-laravelFilter::filter :paginator="$paginator" />
 
-    @endif
+        @endif
 
 
     {{-- relations filter options --}}

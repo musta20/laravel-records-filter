@@ -17,8 +17,10 @@
 
         </div>
 
-        <div class="p-2" >
-        <x-laravelFilter::tags :paginator="$paginator" />
+        <div class="p-2">
+
+                <x-laravelFilter::tags :paginator="$paginator" />
+
         </div>
 
 

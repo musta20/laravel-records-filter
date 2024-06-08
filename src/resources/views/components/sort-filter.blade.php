@@ -15,7 +15,7 @@
             <!-- Dropdown menu -->
             @if (!request()->has('sort'))
 
-            <option disabled selected value> sort filter : </option>
+            <option disabled selected value> {{ __('sort filter') }} : </option>
 
             @endif
 

@@ -17,7 +17,7 @@
                 <li class="p-2">
 
 
-                        <label  
+                        <label
                         class="block bg-slate-500 p-2 dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
                         >{{ $item['label'] }}</label>
 
@@ -33,7 +33,7 @@
                                 @if (!isset($relRequestData) || !$relRequestData->contains('filed', $item['id']))
                                 selected
                                 @endif value>
-                                    -- select an option --
+                                    {{ __('select an option') }}
                             </option>
 
 

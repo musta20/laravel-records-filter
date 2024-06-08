@@ -7,11 +7,13 @@ use Illuminate\Support\ServiceProvider;
 
 class LaravelFilterServiceProvider extends ServiceProvider
 {
-
     public function boot()
     {
 
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'laravelFilter');
+
+        $this->loadJsonTranslationsFrom(__DIR__ . '/lang');
+
         Blade::componentNamespace('Musta20\LaravelFilter\View\Components', 'laravelFilter');
 
     }
