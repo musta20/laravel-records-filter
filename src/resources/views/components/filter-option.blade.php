@@ -41,7 +41,7 @@
                         @endphp
 
                         <li class="p-2" >
-                            <label  class="block bg-slate-500 p-2 dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                            <label  class="block bg-slate-500 p-2 rounded-md dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                                 {{ $item['label'] }}
                             </label>
                             @foreach ($item['options'] as $key=>$optionItem)
@@ -56,7 +56,7 @@
 
                                 name="filter[{{ $arrayIndexCounter }}][value]"
 
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:bg-gray-700 dark:border-gray-600">
 
                                     <label  class="block ms-2 text-sm font-medium text-gray-700 dark:text-gray-300"
 
@@ -87,13 +87,13 @@
 
                         @endphp
                         <li class="p-2">
-                            <label   class="block bg-slate-500 p-2 dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $item['label'] }}</label>
+                            <label   class="block bg-slate-500 p-2 rounded-md dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $item['label'] }}</label>
 
                             <input name="filter[{{ $arrayIndexCounter }}][filed]" value="{{ $item['filed'] }}" hidden>
 
                             <select
 
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                             name="filter[{{ $arrayIndexCounter }}][value]">
 
                                 <option disabled selected value> -- select an option -- </option>
@@ -126,14 +126,14 @@
                                 <input name="filter[{{ $arrayIndexCounter }}][filed]" value="{{ $item['filed'] }}" hidden>
 
                                 <label
-                                class="block bg-slate-500 p-2 dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
+                                class="block bg-slate-500 p-2 rounded-md dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300"
                                 >{{ $item['label'] }}</label>
 
                                 @foreach ($item['options'] as $key=>$RadioItem)
                                 <div class="flex items-center mb-4">
 
                                 <input
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  dark:ring-offset-gray-800 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:bg-gray-700 dark:border-gray-600"
                                 @checked(isset($radioGroupData) && $radioGroupData->where('value', $RadioItem)->first())
 
                                 type="radio" name="filter[{{ $arrayIndexCounter }}][value]" value="{{ $RadioItem }}">
@@ -161,7 +161,7 @@
                         <li class="p-2">
 
                             <div class="mb-6">
-                                <label  class="block bg-slate-500 p-2 dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $item['label'] }}</label>
+                                <label  class="block bg-slate-500 p-2 rounded-md dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $item['label'] }}</label>
                                 <input
                                 name="filter[{{ $arrayIndexCounter }}][value]"
 
@@ -169,7 +169,7 @@
                                 value="{{ $dateData['value'] }}"
                                 @endif
                                 type="date"
-                                class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600">
                             </div>
 
                             <input hidden name="filter[{{ $arrayIndexCounter }}][operation]" value="{{ $item['operation'] }}">
@@ -187,7 +187,7 @@
 
                         <li class="p-2">
 
-                            <label class="block bg-slate-500 p-2 dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300" >{{ $item['label'] }}</label>
+                            <label class="block bg-slate-500 p-2 rounded-md dark:bg-slate-600 mb-2 text-sm font-medium text-gray-700 dark:text-gray-300" >{{ $item['label'] }}</label>
 
                             <div class="mb-6">
                                 <label  class="block  ms-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ $item['options'][0] }}</label>
@@ -197,7 +197,7 @@
                                 @endif
 
 
-                                class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
 
                                 name="filter[{{ $arrayIndexCounter }}][{{ $item['options'][0] }}]"
                                 @if ($item['inputType']==='number' ) type="number" @else type="date" @endif>
@@ -212,7 +212,7 @@
                                 @endif
 
 
-                                class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="block w-full p-1 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
 
                                 name="filter[{{ $arrayIndexCounter }}][{{ $item['options'][1] }}]"
                                 @if ($item['inputType']==='number' ) type="number" @else type="date" @endif>

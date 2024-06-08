@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 class LaravelFilterServiceProvider extends ServiceProvider
 {
-    private const PATH_VIEWS = __DIR__ . '/../resources/views/';
 
     public function boot()
     {

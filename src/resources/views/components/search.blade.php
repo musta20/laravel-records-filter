@@ -19,7 +19,7 @@
 
 
     <input type="text" name="search"
-        class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
+        class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 "
         placeholder="{{ __('Search') }}">
 
 
@@ -29,7 +29,7 @@
     <div class="absolute left-0 inset-y-0   flex items-center ">
 
         <button
-            class="inline-flex items-center text-gray-500 border border-gray-300  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-l-lg text-sm px-3 py-2">{{
+            class="inline-flex items-center text-gray-500 border border-gray-300  focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 font-medium rounded-l-lg text-sm px-3 py-2">{{
             __('Search') }}</button>
     </div>
 
@@ -40,7 +40,7 @@
     <div class="absolute right-0 inset-y-0   flex items-center ">
 
         <button
-            class="inline-flex items-center text-gray-500 border border-gray-300  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-r-lg text-sm px-3 py-2">{{
+            class="inline-flex items-center text-gray-500 border border-gray-300  focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 font-medium rounded-r-lg text-sm px-3 py-2">{{
             __('Search') }}</button>
     </div>
 

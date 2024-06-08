@@ -6,7 +6,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class FilterLengthAwarePaginator extends LengthAwarePaginator
 {
-    public static $defaultFilterView = 'laravelFilter::filter';
+    public static $defaultFilterView = 'laravelFilter::simple-filter';
 
     public $sortFilterOptions = null;
     public $relationsFilterOptions = null;
@@ -39,6 +39,11 @@ class FilterLengthAwarePaginator extends LengthAwarePaginator
         return $this->renderFilter($view, $data);
     }
 
+    public function filterNav( $data = [])
+    {
+        return $this->renderFilter('laravelFilter::search-sort-nav', $data);
+    }
+
     /**
      * Render the paginator using the given view.
      *
@@ -48,9 +53,9 @@ class FilterLengthAwarePaginator extends LengthAwarePaginator
      */
     public function renderFilter($view = null, $data = [])
     {
-
         return static::viewFactory()->make($view ?: static::$defaultFilterView, array_merge($data, [
             'paginator' => $this,
         ]));
+        
     }
 }
