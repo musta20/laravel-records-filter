@@ -1,4 +1,4 @@
-<form id="sort" method="get">
+<form id="laravelFilter::sort" method="get">
         <select name="sort[]"  @change="submitFilter()"
             class="inline-flex items-center text-gray-500 border border-gray-500 w-36  dark:border-gray-500 dark:text-gray-500 dark:bg-gray-800 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 font-medium rounded-lg text-sm px-3 py-1.5"
 

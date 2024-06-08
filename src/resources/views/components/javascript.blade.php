@@ -4,17 +4,17 @@
     Alpine.data("FilterForm", () => ({
         submitFilter: function (removeFilter = null) {
 
-            let filter = BuildFromFormData("filter");
+            let filter = BuildFromFormData("laravelFilter::filter");
 
-            let sort = BuildFromFormData("sort");
+            let sort = BuildFromFormData("laravelFilter::sort");
 
-            let rel = BuildFromFormData("rel");
+            let rel = BuildFromFormData("laravelFilter::rel");
 
-            let limitElement = document.getElementById("limit");
+            let limitElement = document.getElementById("laravelFilter::limit");
             const limit = !limitElement ? new FormData():  new FormData(limitElement);
 
 
-            let searchElement = document.getElementById("search");
+            let searchElement = document.getElementById("laravelFilter::search");
             let search = !searchElement ? new FormData():  new FormData(searchElement);
 
 

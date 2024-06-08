@@ -1,6 +1,6 @@
 
         <form
-         @submit.prevent="submitFilter()" id="filter" method="get">
+         @submit.prevent="submitFilter()" id="laravelFilter::filter" method="get">
 
             <ul class="py-1 text-sm text-gray-700 " aria-labelledby="dropdownActionButton">
 

@@ -4,7 +4,7 @@
 
     @submit.prevent="submitFilter"
 
-    id="search"
+    id="laravelFilter::search"
 
     class="relative ">
 

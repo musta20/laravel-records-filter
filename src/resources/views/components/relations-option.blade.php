@@ -1,4 +1,4 @@
-<form @submit.prevent="submitFilter" id="rel" method="get">
+<form @submit.prevent="submitFilter" id="laravelFilter::rel" method="get">
             <ul class="py-1 text-sm text-gray-700 " aria-labelledby="dropdownActionButton">
 
                 @php
