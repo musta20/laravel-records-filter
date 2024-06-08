@@ -10,9 +10,13 @@
 
             let rel = BuildFromFormData("rel");
 
-            const limit = new FormData(document.getElementById("limit"));
+            let limitElement = document.getElementById("limit");
+            const limit = !limitElement ? new FormData():  new FormData(limitElement);
 
-            let search = new FormData(document.getElementById("search"));
+
+            let searchElement = document.getElementById("search");
+            let search = !searchElement ? new FormData():  new FormData(searchElement);
+
 
             if(removeFilter)
             {
@@ -99,6 +103,9 @@
 
                 const filterElement = document.getElementById(formElement);
 
+                
+                if (!filterElement) return new FormData();
+                
                 const formData = new FormData(filterElement);
 
                 let query = "";
