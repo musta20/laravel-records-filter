@@ -1,11 +1,11 @@
 {
-    "name": "musta20/laravel-filter",
+    "name": "musta20/laravel-records-filter",
     "description": "a laravel packge to filter record",
     "version": "1.0.0",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Musta20\\LaravelFilter\\": "src/"
+            "Musta20\\LaravelRecordsFilter\\": "src/"
         }
     },
     "authors": [
@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Musta20\\LaravelFilter\\LaravelFilterServiceProvider"
+                "Musta20\\LaravelRecordsFilter\\LaravelRecordsFilterServiceProvider"
             ]
             
     }

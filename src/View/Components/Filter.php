@@ -1,6 +1,6 @@
 <?php
 
-namespace Musta20\LaravelFilter\View\Components;
+namespace Musta20\LaravelRecordsFilter\View\Components;
 
 use Illuminate\View\Component;
 
@@ -12,6 +12,6 @@ class Filter extends Component
 
     public function render()
     {
-        return view('laravelFilter::components.filter-option');
+        return view('laravelRecordsFilter::components.filter-option');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Musta20\LaravelFilter\View\Components;
+namespace Musta20\LaravelRecordsFilter\View\Components;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\View\Component;
@@ -28,6 +28,6 @@ class RelationFilter extends Component
 
     public function render()
     {
-        return view('laravelFilter::components.relations-option');
+        return view('laravelRecordsFilter::components.relations-option');
     }
 }

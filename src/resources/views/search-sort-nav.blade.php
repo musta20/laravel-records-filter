@@ -3,15 +3,15 @@
         <div class="flex gap-3 justify-between flex-wrap">
 
                 {{-- search --}}
-                <x-laravelFilter::search />
+                <x-laravelRecordsFilter::search />
 
                 {{-- pagination per page items --}}
-                <x-laravelFilter::paginator :paginator="$paginator" />
+                <x-laravelRecordsFilter::paginator :paginator="$paginator" />
 
                 {{-- sorting options --}}
                 @if ($paginator->sortFilterOptions)
 
-                <x-laravelFilter::sort-filter :paginator="$paginator" />
+                <x-laravelRecordsFilter::sort-filter :paginator="$paginator" />
 
                 @endif
 
@@ -19,7 +19,7 @@
 
         <div class="p-2">
 
-                <x-laravelFilter::tags :paginator="$paginator" />
+                <x-laravelRecordsFilter::tags :paginator="$paginator" />
 
         </div>
 

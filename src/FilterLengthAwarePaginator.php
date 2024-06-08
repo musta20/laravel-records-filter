@@ -1,12 +1,12 @@
 <?php
 
-namespace Musta20\LaravelFilter;
+namespace Musta20\LaravelRecordsFilter;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class FilterLengthAwarePaginator extends LengthAwarePaginator
 {
-    public static $defaultFilterView = 'laravelFilter::simple-filter';
+    public static $defaultFilterView = 'laravelRecordsFilter::simple-filter';
 
     public $sortFilterOptions = null;
     public $relationsFilterOptions = null;
@@ -41,7 +41,7 @@ class FilterLengthAwarePaginator extends LengthAwarePaginator
 
     public function filterNav($data = [])
     {
-        return $this->renderFilter('laravelFilter::search-sort-nav', $data);
+        return $this->renderFilter('laravelRecordsFilter::search-sort-nav', $data);
     }
 
     /**

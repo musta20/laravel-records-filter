@@ -1,11 +1,11 @@
-<x-laravelFilter::javascript />
+<x-laravelRecordsFilter::javascript />
 
 <div x-data="FilterForm">
 
     <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4  ">
 
         {{-- pagination per page items --}}
-        <x-laravelFilter::paginator :paginator="$paginator" />
+        <x-laravelRecordsFilter::paginator :paginator="$paginator" />
 
         {{-- sorting options --}}
         @if ($paginator->filterOptions)
@@ -25,7 +25,7 @@
 
             <div x-cloak x-show="openMenu" id="dropdownAction"
                 class="z-10 mt-10 absolute bg-white divide-y dark:bg-gray-800 divide-gray-100 rounded-lg shadow w-auto  ">
-                <x-laravelFilter::filter :postForm="true" :paginator="$paginator" />
+                <x-laravelRecordsFilter::filter :postForm="true" :paginator="$paginator" />
 
             </div>
 
@@ -35,7 +35,7 @@
 
         @if ($paginator->sortFilterOptions)
 
-            <x-laravelFilter::sort-filter :paginator="$paginator" />
+            <x-laravelRecordsFilter::sort-filter :paginator="$paginator" />
 
         @endif
 
@@ -58,7 +58,7 @@
                 <div x-cloak x-show="openMenuRel" id="dropdownAction"
                     class="z-10 mt-10 absolute bg-white divide-y dark:bg-gray-800 divide-gray-100 rounded-lg shadow w-auto  ">
 
-                    <x-laravelFilter::relation-filter :paginator="$paginator" />
+                    <x-laravelRecordsFilter::relation-filter :paginator="$paginator" />
 
 
                 </div>
@@ -66,11 +66,11 @@
         @endif
 
         {{-- search --}}
-        <x-laravelFilter::search />
+        <x-laravelRecordsFilter::search />
 
     </div>
 
-    <x-laravelFilter::tags :paginator="$paginator" />
+    <x-laravelRecordsFilter::tags :paginator="$paginator" />
 
 
 </div>

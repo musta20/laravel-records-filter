@@ -1,4 +1,4 @@
-<x-laravelFilter::javascript />
+<x-laravelRecordsFilter::javascript />
 
 
 <div x-data="FilterForm">
@@ -25,7 +25,7 @@
 
                 @if ($paginator->filterOptions)
 
-                <x-laravelFilter::filter :paginator="$paginator" />
+                <x-laravelRecordsFilter::filter :paginator="$paginator" />
 
                 @endif
 
@@ -34,7 +34,7 @@
                 {{-- relations filter options --}}
                 @if ($paginator->relationsFilterOptions)
 
-                <x-laravelFilter::relation-filter :paginator="$paginator" />
+                <x-laravelRecordsFilter::relation-filter :paginator="$paginator" />
 
                 @endif
 
@@ -46,19 +46,19 @@
             {{-- sorting options --}}
             @if ($paginator->sortFilterOptions)
 
-            <x-laravelFilter::sort-filter :paginator="$paginator" />
+            <x-laravelRecordsFilter::sort-filter :paginator="$paginator" />
 
             @endif
 
             {{-- pagination per page items --}}
-            <x-laravelFilter::paginator :paginator="$paginator" />
+            <x-laravelRecordsFilter::paginator :paginator="$paginator" />
 
 
 
             @if ($paginator->searchFields)
 
             {{-- search --}}
-            <x-laravelFilter::search />
+            <x-laravelRecordsFilter::search />
 
             @endif
         </div>

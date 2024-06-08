@@ -1,6 +1,6 @@
 <?php
 
-namespace Musta20\LaravelFilter\View\Components;
+namespace Musta20\LaravelRecordsFilter\View\Components;
 
 use Illuminate\View\Component;
 
@@ -13,6 +13,6 @@ class SortFilter extends Component
 
     public function render()
     {
-        return view('laravelFilter::components.sort-filter');
+        return view('laravelRecordsFilter::components.sort-filter');
     }
 }

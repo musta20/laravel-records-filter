@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Musta20\LaravelFilter;
+namespace Musta20\LaravelRecordsFilter;
 
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Builder;

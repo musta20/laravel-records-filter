@@ -1,18 +1,17 @@
 <?php
 
-namespace Musta20\LaravelFilter;
+namespace Musta20\LaravelRecordsFilter;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\App;
 
 trait HasFilter
 {
-    protected string $defaultSimpleView = 'components.filter';
-
     public static function scopeRequestPaginate($query)
     {
 
         $request = request();
+
         $limit = $request->limit ?? 10;
 
         $request->validate([

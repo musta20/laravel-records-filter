@@ -119,7 +119,7 @@
 
         for (const [key, value] of formData) {
           if (!merged.some((evaKey) => key.startsWith(evaKey))) {
-            if (formElement == "rel" && key.includes("[value]")) {
+            if (formElement == "laravelFilter::rel" && key.includes("[value]")) {
               relItemOption = JSON.parse(value);
 
               ItemIndex = stringToArray(key);

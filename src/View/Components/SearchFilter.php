@@ -1,6 +1,6 @@
 <?php
 
-namespace Musta20\LaravelFilter\View\Components;
+namespace Musta20\LaravelRecordsFilter\View\Components;
 
 use Illuminate\View\Component;
 
@@ -13,7 +13,7 @@ class SearchFilter extends Component
 
     public function render()
     {
-        return view('laravelFilter::components.search');
+        return view('laravelRecordsFilter::components.search');
 
     }
 }

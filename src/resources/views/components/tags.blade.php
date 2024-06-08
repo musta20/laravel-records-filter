@@ -2,7 +2,7 @@
 
     @if (request('search'))
 
-    <x-laravelFilter::tag-filters tag="search" text="{{ __('search').' : '.request('search') }}" />
+    <x-laravelRecordsFilter::tag-filters tag="search" text="{{ __('search').' : '.request('search') }}" />
 
     @endif
 
@@ -17,7 +17,7 @@
 
                 @endphp
 
-                    <x-laravelFilter::tag-filters tag="sort" :text="$data['lable']" />
+                    <x-laravelRecordsFilter::tag-filters tag="sort" :text="$data['lable']" />
 
                 @endisset
 
@@ -40,8 +40,11 @@
             @endphp
 
 
-            <x-laravelFilter::tag-filters index="{{ $key }}" tag="rel"
-                text="{{ $relItem['label'] .' : '. urldecode($item['label']) }}" />
+            <x-laravelRecordsFilter::tag-filters index="{{ $key }}"
+                tag="rel"
+                text="{{ $relItem['label'] .' : '. urldecode($item['label']) }}"
+
+                />
 
 
         @endforeach
@@ -87,18 +90,18 @@
     isset($item[$relItem['options'][1]]))
 
 
-        <x-laravelFilter::tag-filters index="{{ $key }}" tag="filter"
+        <x-laravelRecordsFilter::tag-filters index="{{ $key }}" tag="filter"
             text="{{ $relItem['label'] .' : '.$item[$relItem['options'][0]].' - '.$item[$relItem['options'][1]] }}" />
 
         @elseif (isset($relItem['options']) && isset($item['value']) && $relItem['type'] != 'range')
 
-        <x-laravelFilter::tag-filters index="{{ $key }}" tag="filter"
+        <x-laravelRecordsFilter::tag-filters index="{{ $key }}" tag="filter"
             text="{{ $relItem['label'] .' : '.array_search($item['value'], $relItem['options']) }}" />
 
         @elseif (isset($relItem['type']) && $relItem['type'] != 'range')
 
 
-        <x-laravelFilter::tag-filters index="{{ $key }}" tag="filter"
+        <x-laravelRecordsFilter::tag-filters index="{{ $key }}" tag="filter"
             text="{{ $relItem['label'] .' : '.urldecode($item['value']) }}" />
 
 
