@@ -1,5 +1,5 @@
 <script>
-   document.addEventListener("alpine:init", () => {
+  document.addEventListener("alpine:init", () => {
   Alpine.data("FilterForm", () => ({
     submitFilter: function (removeFilter = null) {
       let query = "";
@@ -224,3 +224,8 @@
 });
 
 </script>
+<style>
+  :where([dir="rtl"]) select {
+    background-position: left .5rem center;
+  }
+</style>

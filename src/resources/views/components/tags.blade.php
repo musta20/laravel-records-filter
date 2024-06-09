@@ -2,7 +2,7 @@
 
     @if (request('search'))
 
-    <x-laravelRecordsFilter::tag-filters tag="search" text="{{ __('search').' : '.request('search') }}" />
+    <x-laravelRecordsFilter::tag-filters tag="search" text="{{ __('search').' : '.urldecode(request('search')) }}" />
 
     @endif
 

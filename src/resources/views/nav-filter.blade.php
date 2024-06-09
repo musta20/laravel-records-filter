@@ -47,7 +47,7 @@
                 <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" @click="openMenuRel = ! openMenuRel"
                     class="inline-flex items-center text-gray-500 border dark:border-gray-500 border-gray-300  focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5"
                     type="button">
-                    {{ __('filter by') }}
+                    {{ __('filter by') }} :
                     <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
