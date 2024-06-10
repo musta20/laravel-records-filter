@@ -1,7 +1,7 @@
 {
     "name": "musta20/laravel-records-filter",
     "description": "a laravel packge to filter record",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "type": "library",
     "license": "MIT",
     "autoload": {
