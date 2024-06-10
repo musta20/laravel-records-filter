@@ -12,9 +12,15 @@ class LaravelRecordsFilterServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'laravelRecordsFilter');
 
-        $this->loadJsonTranslationsFrom(__DIR__ . '/lang');
-
         Blade::componentNamespace('Musta20\LaravelRecordsFilter\View\Components', 'laravelRecordsFilter');
+
+        $this->loadTranslationsFrom(__DIR__ . '/lang', 'laravelRecordsFilter');
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/resources/views' => $this->app->resourcePath('views/vendor/laravelRecordsFilter'),
+            ], 'laravel-Records-Filter');
+        }
 
     }
 

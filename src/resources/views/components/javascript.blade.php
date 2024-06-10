@@ -225,6 +225,8 @@
 
 </script>
 <style>
+  [x-cloak] { display: none !important; }
+
   :where([dir="rtl"]) select {
     background-position: left .5rem center;
   }

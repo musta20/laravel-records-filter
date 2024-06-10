@@ -47,7 +47,6 @@ trait HasFilter
 
     public function scopeFilter($query)
     {
-        // dd(request()->query());
 
         $relation = request()->query()['rel'] ?? null;
 

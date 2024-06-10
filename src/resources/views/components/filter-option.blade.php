@@ -79,7 +79,7 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 block w-full p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                             name="filter[{{ $arrayIndexCounter }}][value]">
 
-                                <option disabled selected value>                                    {{ __('select an option') }}
+                                <option disabled selected value>                                    {{ __('laravelRecordsFilter::messages.select an option') }}
                                 </option>
 
                                 @foreach ($item['options'] as $key=>$SelectItem)
@@ -222,7 +222,7 @@
             <button
                 class=" text-white m-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 type="submit">
-                {{ __('filter') }}
+                {{ __('laravelRecordsFilter::messages.filter') }}
             </button>
             @endisset
         </form>
