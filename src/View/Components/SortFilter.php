@@ -6,10 +6,7 @@ use Illuminate\View\Component;
 
 class SortFilter extends Component
 {
-    public function __construct(public $paginator)
-    {
-
-    }
+    public function __construct(public $paginator) {}
 
     public function render()
     {
