@@ -1,18 +1,29 @@
-# .github/workflows/duster.yml
-name: Duster
+name: Duster Fix
 
 on:
-  push:
-    branches: main
-  pull_request:
+    push:
+        branches: main
+    pull_request:
 
 jobs:
   duster:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
       - name: "duster"
         uses: tighten/duster-action@v3
         with:
-          args: lint
+          args: fix
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Dusting
+          commit_user_name: GitHub Action
+          commit_user_email: actions@github.com
