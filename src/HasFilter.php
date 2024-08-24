@@ -96,11 +96,8 @@ trait HasFilter
                             $max = max($value[$rangeItem['options'][0]], $value[$rangeItem['options'][1]]);
 
                             $query->whereBetween($this->getTable() . '.' . $value['filed'], [$min, $max]);
-
                         }
-
                     }
-
                 } elseif (isset($value['value']) && isset($value['filed'])) {
 
                     $value['operation'] = isset($value['operation']) ? urldecode($value['operation']) : '=';
@@ -110,7 +107,6 @@ trait HasFilter
                     if ($filteringItem['type'] == 'date') {
 
                         $query->whereDate($this->getTable() . '.' . $value['filed'], $value['value']);
-
                     } else {
 
                         $valCoutn = $collectedFilter->where('filed', $value['filed']);
@@ -123,9 +119,7 @@ trait HasFilter
                         }
 
                         $query->where($this->getTable() . '.' . $value['filed'], $value['operation'], $value['value']);
-
                     }
-
                 }
             }
         }
@@ -143,6 +137,7 @@ trait HasFilter
                 $ModelPrymaryId = $this->getModelKeyName($relModelName);
 
                 $query
+                    ->select($currrentModelName . '.*')
                     ->join($tableName, $currrentModelName . '.' . $value['filed'], '=', $tableName . '.' . $ModelPrymaryId)
                     ->where($tableName . '.' . $ModelPrymaryId, $value['value']);
             }
@@ -159,13 +154,10 @@ trait HasFilter
 
                     $query->orWhere($currrentModelName . '.' . $columnName, 'like', "%{$searchTerm}%");
                 }
-
             });
-
         }
 
         return $query->RequestPaginate();
-
     }
 
     public function getModelName($model)
